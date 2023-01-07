@@ -1,12 +1,10 @@
 package com.example.api.controller;
 
-import com.example.api.medico.DadosCadastrados;
+import com.example.api.medico.DadosCadastradosMedico;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-
 
 // o spring utiliza a notações, a anotação @RestController é para referenciar a que nossa classe faz parte de
 // um controller;
@@ -17,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MedicoController {
 
     @PostMapping
-    public void cadastrar(@RequestBody DadosCadastrados dados){
+    public void cadastrar(@RequestBody DadosCadastradosMedico dados){
         System.out.println(dados);
     }
 
