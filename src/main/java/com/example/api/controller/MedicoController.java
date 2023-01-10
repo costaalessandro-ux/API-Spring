@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 // o spring utiliza a notações, a anotação @RestController é para referenciar a que nossa classe faz parte de
 // um controller;
@@ -25,7 +26,7 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody DadosCadastradosMedico dados){
+    public void cadastrar(@RequestBody @Valid DadosCadastradosMedico dados){
         repository.save(new Medico(dados));
     }
 
