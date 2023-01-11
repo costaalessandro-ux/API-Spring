@@ -2,16 +2,18 @@ package com.example.api.controller;
 
 import com.example.api.endereco.Endereco;
 import com.example.api.medico.DadosCadastradosMedico;
+import com.example.api.medico.DadosListagemMedico;
 import com.example.api.medico.Medico;
 import com.example.api.medico.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 
 // o spring utiliza a notações, a anotação @RestController é para referenciar a que nossa classe faz parte de
 // um controller;
@@ -30,5 +32,9 @@ public class MedicoController {
         repository.save(new Medico(dados));
     }
 
+    @GetMapping
+    public Page<DadosListagemMedico> Listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
+        return repository.findAll(paginacao).map(DadosListagemMedico::new);
+    }
 
 }
