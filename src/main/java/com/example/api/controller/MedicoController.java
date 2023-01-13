@@ -12,6 +12,8 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
+import static org.hibernate.criterion.Projections.id;
+
 // o spring utiliza a notações, a anotação @RestController é para referenciar a que nossa classe faz parte de
 // um controller;
 // @RequestMapping faz com que a classe possua uma URL;
@@ -31,7 +33,7 @@ public class MedicoController {
 
     @GetMapping
     public Page<DadosListagemMedico> Listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
-        return repository.findAll(paginacao).map(DadosListagemMedico::new);
+        return repository.findAllByAtivosTrue(paginacao).map(DadosListagemMedico::new);
     }
 
     @PutMapping
@@ -39,6 +41,13 @@ public class MedicoController {
     public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
         var medico = repository.getReferenceById(dados.id());
         medico.atualizarInformacoes(dados);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        var medico = repository.getReferenceById(id);
+        medico.excluir();
     }
 
 }
