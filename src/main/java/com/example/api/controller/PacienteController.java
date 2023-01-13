@@ -1,9 +1,6 @@
 package com.example.api.controller;
 
-import com.example.api.paciente.DadosCadastroPaciente;
-import com.example.api.paciente.DadosListagemPaciente;
-import com.example.api.paciente.Paciente;
-import com.example.api.paciente.PacienteRepository;
+import com.example.api.paciente.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,12 +20,24 @@ public class PacienteController {
     public void cadastrar(@RequestBody @Valid DadosCadastroPaciente dados){
         repository.save(new Paciente(dados));
     }
+
     @GetMapping
     public Page<DadosListagemPaciente> listar(@PageableDefault(page = 0, size = 10, sort = {"nome"}) Pageable paginacao){
-        return repository.findAll(paginacao).map(DadosListagemPaciente::new);
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
     }
 
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dados){
+        var paciente = repository.getReferenceById(dados.id());
+        paciente.atualizarInformacoes(dados);
+    }
 
-
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void remover(@PathVariable Long id) {
+        var paciente = repository.getReferenceById(id);
+        paciente.inativar();
+    }
 
 }
