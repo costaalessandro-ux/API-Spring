@@ -1,10 +1,7 @@
 package com.example.api.controller;
 
 import com.example.api.endereco.Endereco;
-import com.example.api.medico.DadosCadastradosMedico;
-import com.example.api.medico.DadosListagemMedico;
-import com.example.api.medico.Medico;
-import com.example.api.medico.MedicoRepository;
+import com.example.api.medico.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,6 +32,13 @@ public class MedicoController {
     @GetMapping
     public Page<DadosListagemMedico> Listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
         return repository.findAll(paginacao).map(DadosListagemMedico::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
+        var medico = repository.getReferenceById(dados.id());
+        medico.atualizarInformacoes(dados);
     }
 
 }
