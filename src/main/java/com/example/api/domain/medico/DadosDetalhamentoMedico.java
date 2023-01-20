@@ -1,6 +1,6 @@
-package com.example.api.medico;
+package com.example.api.domain.medico;
 
-import com.example.api.endereco.Endereco;
+import com.example.api.domain.endereco.Endereco;
 
 public record DadosDetalhamentoMedico(Long id, String nome, String email, String crm, String telefone, Especialidade especialidade, Endereco endereco) {
     public DadosDetalhamentoMedico(Medico medico){

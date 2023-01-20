@@ -1,6 +1,6 @@
-package com.example.api.paciente;
+package com.example.api.domain.paciente;
 
-import com.example.api.endereco.DadosEndereco;
+import com.example.api.domain.endereco.DadosEndereco;
 
 import javax.validation.Valid;
 

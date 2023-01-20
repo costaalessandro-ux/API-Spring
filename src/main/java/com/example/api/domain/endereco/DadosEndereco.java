@@ -1,4 +1,4 @@
-package com.example.api.endereco;
+package com.example.api.domain.endereco;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;

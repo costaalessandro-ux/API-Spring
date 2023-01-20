@@ -1,11 +1,10 @@
-package com.example.api.paciente;
+package com.example.api.domain.paciente;
 
-import com.example.api.endereco.Endereco;
+import com.example.api.domain.endereco.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
 

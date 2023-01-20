@@ -1,6 +1,6 @@
-package com.example.api.medico;
+package com.example.api.domain.medico;
 
-import com.example.api.endereco.DadosEndereco;
+import com.example.api.domain.endereco.DadosEndereco;
 
 import javax.validation.constraints.NotNull;
 

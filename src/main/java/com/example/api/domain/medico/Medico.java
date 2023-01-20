@@ -1,9 +1,9 @@
-package com.example.api.medico;
+package com.example.api.domain.medico;
 
 //Esta classe foi criada para ter a função de JPA
 //Abaixo encontrasse as anotoções referentes ao JPA!
 //Aqui tambem tem anotações do Loombok
-import com.example.api.endereco.Endereco;
+import com.example.api.domain.endereco.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
