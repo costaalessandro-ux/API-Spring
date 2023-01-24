@@ -1,4 +1,4 @@
-package com.example.api.infra;
+package com.example.api.infra.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
