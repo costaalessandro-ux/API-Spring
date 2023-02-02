@@ -1,6 +1,8 @@
 package com.example.api.controller;
 
 import com.example.api.domain.DadosAutenticacao;
+import com.example.api.domain.usuario.Usuario;
+import com.example.api.infra.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,11 +21,14 @@ public class AutenticacaoController {
     @Autowired
     private AuthenticationManager maneger;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados){
            var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
            var authentication = maneger.authenticate(token);
-           return ResponseEntity.ok().build();
+           return ResponseEntity.ok(tokenService.gerarToken((Usuario) authentication.getPrincipal()));
     }
 
 }
