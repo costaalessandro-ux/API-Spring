@@ -15,17 +15,17 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
-    @Value("{api.security.token.secret}")
+    @Value("${api.security.token.secret}")
     private String secret;
 
     public String gerarToken(Usuario usuario){
         try {
-            var algoritimo = Algorithm.HMAC256(secret);
+            var algoritmo = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("API Voll.med")
                     .withSubject(usuario.getLogin())
                     .withExpiresAt(dataExpiracao())
-                    .sign(algoritimo);
+                    .sign(algoritmo);
         } catch (JWTCreationException exception){
             throw new RuntimeException("erro ao gerrar token jwt", exception);
         }
@@ -33,8 +33,8 @@ public class TokenService {
 
     public String getSubject(String tokenJWT) {
         try {
-            var algoritimo = Algorithm.HMAC256(secret);
-            return JWT.require(algoritimo)
+            var algoritmo = Algorithm.HMAC256(secret);
+            return JWT.require(algoritmo)
                     .withIssuer("API Voll.med")
                     .build()
                     .verify(tokenJWT)
