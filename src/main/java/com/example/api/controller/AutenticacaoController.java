@@ -20,7 +20,7 @@ import javax.validation.Valid;
 public class AutenticacaoController {
 
     @Autowired
-    private AuthenticationManager maneger;
+    private AuthenticationManager manager;
 
     @Autowired
     private TokenService tokenService;
@@ -28,7 +28,7 @@ public class AutenticacaoController {
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados){
            var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-           var authentication = maneger.authenticate(authenticationToken );
+           var authentication = manager.authenticate(authenticationToken);
            var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
            return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
     }
