@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 // o spring utiliza a notações, a anotação @RestController é para referenciar a que nossa classe faz parte de
 // um controller;
