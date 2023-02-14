@@ -1,6 +1,9 @@
 package com.example.api.controller;
 
 import com.example.api.domain.medico.*;
+import com.example.api.domain.medico.DadosListagemMedico;
+import com.example.api.domain.medico.Medico;
+import com.example.api.domain.medico.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,8 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
 
 // o spring utiliza a notações, a anotação @RestController é para referenciar a que nossa classe faz parte de

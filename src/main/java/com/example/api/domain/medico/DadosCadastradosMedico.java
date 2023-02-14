@@ -1,12 +1,11 @@
 package com.example.api.domain.medico;
 
-import com.example.api.domain.endereco.DadosEndereco;
-
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import com.example.api.domain.endereco.DadosEndereco;
 
 // Estamos utilizando Bean Validation
 public record DadosCadastradosMedico(

@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Getter
 @EqualsAndHashCode(of = "id")
