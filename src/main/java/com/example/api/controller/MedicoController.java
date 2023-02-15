@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 // @RequestMapping faz com que a classe possua uma URL;
 // @PostMapping diz que a o metodo vai receber uma requisição post;
 @RestController
-@RequestMapping("/medicos")
+@RequestMapping("medicos")
 public class MedicoController {
 
     @Autowired
