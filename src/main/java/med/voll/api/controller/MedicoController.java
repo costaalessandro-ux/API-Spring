@@ -1,5 +1,6 @@
 package med.voll.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.voll.api.domain.medico.DadosListagemMedico;
 import med.voll.api.domain.medico.Medico;
@@ -23,6 +24,7 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
+    @SecurityRequirement(name = "bearer-key")
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder) {
         var medico = new Medico(dados);
         repository.save(medico);
