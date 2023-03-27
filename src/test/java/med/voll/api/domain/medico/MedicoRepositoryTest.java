@@ -37,13 +37,31 @@ class MedicoRepositoryTest {
     // essa anotação é para descrever a função do metodo que será testado.
     @DisplayName("Deveria devolver null quando unico medico cadastrado não esta disponivle na data")
     void escolherMedicoAleatorioLivreNaDataCenario1() {
+        // giver ou arrange
         var proximaSegundaAs10 = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY)).atTime(10, 0);
+        // when ou act
         var medico = cadastrarMedico("Medico", "medico@voll.med", "123456", Especialidade.CARDIOLOGIA);
         var paciente = cadastrarPaciente("Paciente", "paciente@email.com", "00000000000");
         cadastrarConsulta(medico, paciente, proximaSegundaAs10);
+        // then ou assert
         var medicoLivre = medicoRepository.escolherMedicoAleatorioLivreNaData(Especialidade.CARDIOLOGIA, proximaSegundaAs10);
         assertThat(medicoLivre).isNull();
     }
+
+    @Test
+    @DisplayName("Deveria devolver medico quando ele estiver disponivel na data")
+    void escolherMedicoAleatorioLivreNaDataCenario2() {
+        var proximaSegundaAs10 = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY)).atTime(10, 0);
+        var medico = cadastrarMedico("Medico", "medico@voll.med", "123456", Especialidade.CARDIOLOGIA);
+        var medicoLivre = medicoRepository.escolherMedicoAleatorioLivreNaData(Especialidade.CARDIOLOGIA, proximaSegundaAs10);
+        assertThat(medicoLivre).isEqualTo(medico);
+    }
+
+
+
+
+
+
 
     // metodos que serão usados para fazer os testes.
     private void cadastrarConsulta(Medico medico, Paciente paciente, LocalDateTime data) {
