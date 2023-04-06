@@ -56,12 +56,6 @@ class MedicoRepositoryTest {
         assertThat(medicoLivre).isEqualTo(medico);
     }
 
-
-
-
-
-
-
     // metodos que serão usados para fazer os testes.
     private void cadastrarConsulta(Medico medico, Paciente paciente, LocalDateTime data) {
         em.persist(new Consulta(null, medico, paciente, data, null));
