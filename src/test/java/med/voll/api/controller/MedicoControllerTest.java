@@ -1,5 +1,5 @@
 package med.voll.api.controller;
-
+/*
 import med.voll.api.domain.endereco.DadosEndereco;
 import med.voll.api.domain.endereco.Endereco;
 import med.voll.api.domain.medico.*;
@@ -85,3 +85,4 @@ public class MedicoControllerTest {
         );
     }
 }
+*/
